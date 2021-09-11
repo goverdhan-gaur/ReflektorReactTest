@@ -1,5 +1,53 @@
-@import '../../styles/shared.scss';
+@import "../../styles/shared.scss";
 
 .MovieInfo {
   position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2.5fr;
+  grid-gap: 3em;
+  padding: 1em;
+  border-radius: 2px;
+  transition: all 200ms;
+  color: $clr-light;
+  img {
+    width: 100%;
+    min-width: 150px;
+  }
+  div {
+    .MovieYear {
+      font-weight: 300;
+    }
+    .MovieTitle {
+      font-weight: 500;
+      margin: 0.35em 0 0.5em 0;
+    }
+    .MovieOverview {
+      font-weight: 400;
+      overflow: hidden;
+      display: -webkit-box;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      color: $clr-text-light;
+    }
+  }
+
+  &:hover {
+    box-shadow: -1px 0 10px 3px rgba(179, 177, 177, 0.158);
+    background: rgba($clr-light, 0.9);
+    color: $clr-black;
+    transform: scale(1.1);
+
+    div .MovieOverview {
+      color: $clr-black;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    & {
+      grid-template-columns: 1fr;
+      margin: 1em auto;
+    }
+  }
 }

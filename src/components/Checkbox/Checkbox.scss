@@ -1,0 +1,23 @@
+@import "../../styles/shared.scss";
+
+.checkbox {
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  label {
+    display: block;
+    padding: 0.4em 0.6em;
+    border-radius: 10px;
+    background: $clr-dark-blue;
+    text-align: center;
+    cursor: pointer;
+    color: $clr-light;
+    border: 2px solid $clr-light;
+  }
+  input[type="checkbox"]:checked + label {
+    color: $clr-light;
+    background: $clr-purple;
+    border-color: $clr-purple;
+  }
+}

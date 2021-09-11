@@ -1,24 +1,72 @@
-import React, { useEffect } from 'react';
-import './style.css';
-import movies from './data/movies.json';
-import movieGeneres from './data/movie-genres.json';
-import MovieInfo from './components/MovieInfo/MovieInfo';
+import React, { useEffect, Fragment, useState } from 'react'
+import './style.css'
+import movies from './data/movies.json'
+import movieGenres from './data/movie-genres.json'
+import MovieInfo from './components/MovieInfo/MovieInfo'
+import Filter from './components/Filter/Filter'
+import Container from './components/Container/Container'
+import Modal from './components/Model/Modal'
 
 export default function App() {
-  // An example of retrieving movie data for a single movie
-  const movie = movies[0];
+  const [movieList, setMovieList] = useState(movies)
+  const [filterList, setFilterList] = useState([])
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
+  const [isFiltered, setIsFiltered] = useState(false)
 
-  const movieGenres = movies[0];
+  const updateMovieList = () => {
+    return movies.filter((movie) =>
+      movie.genre_ids.some((genre) => filterList.includes(genre)),
+    )
+  }
+  const clearFiltersList = () => {
+    setFilterList([])
+    setIsFiltered(true)
+  }
+
+  const updateFilterList = (selectedGenre) => {
+    setFilterList(selectedGenre)
+    setIsFiltered(true)
+  }
+
+  const openFiltersHandler = () => {
+    setIsFilterOpen(true)
+  }
+
+  const closeFiltersHandler = () => {
+    setIsFilterOpen(false)
+  }
 
   useEffect(() => {
-    // A log of movie data
-    console.info('movies:', movies);
-    console.info('movieGenres:', movieGeneres);
-  }, []);
+    let newArr = updateMovieList() || movies
+    filterList.length > 0 ? setMovieList(newArr) : setMovieList(movies)
+    return () => {
+      setIsFiltered(false)
+    }
+  }, [isFiltered])
 
   return (
-    <div className="App">
-      <MovieInfo posterPath={movie.poster_path} />
-    </div>
-  );
+    <Fragment>
+      <Filter
+        onClickFilter={openFiltersHandler}
+        selectedFilters={filterList}
+        movieGenres={movieGenres}
+        clearFiltersList={clearFiltersList}
+      />
+      <Container>
+        <div className="MovieList margin-top">
+          {movieList.map((movie) => (
+            <MovieInfo key={movie.id} movie={movie} />
+          ))}
+        </div>
+      </Container>
+      {isFilterOpen && (
+        <Modal
+          genres={movieGenres}
+          onCloseModal={closeFiltersHandler}
+          setFilterList={updateFilterList}
+          selectedFilters={filterList}
+        />
+      )}
+    </Fragment>
+  )
 }

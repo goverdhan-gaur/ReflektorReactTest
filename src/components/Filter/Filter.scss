@@ -1,0 +1,72 @@
+@import "../../styles/shared.scss";
+
+.filter {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  top: 0;
+  background: $clr-black;
+  padding: 2em 1em;
+  box-shadow: 0px 15px 60px 40px rgba(0, 0, 0, 0.719);
+
+  .filter-actions {
+    margin: 0em 0 2em 0;
+    display: flex;
+    align-items: center;
+
+    .filter-button {
+      padding: 0.5em 1.2em;
+      font-weight: 500;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      background: $clr-purple;
+      color: $clr-light;
+      border: none;
+      cursor: pointer;
+    }
+    .filter-button_clear {
+      position: relative;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      background: transparent;
+      color: $clr-light;
+      outline: none;
+      border: none;
+      margin-left: 2.5em;
+      cursor: pointer;
+      &::before,
+      &::after {
+        position: absolute;
+        content: "";
+        background: $clr-light;
+        width: 2px;
+        height: 100%;
+        top: 0;
+        // margin-left: 1em;
+        left: -1em;
+      }
+      &::before {
+        transform: rotate(45deg);
+      }
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+  .filter-list-items {
+    width: 100%;
+    color: white;
+    list-style: none;
+    display: flex;
+    gap: 1.5em;
+    flex-wrap: wrap;
+
+    li {
+      background: $clr-dark-blue;
+      padding: 0.3em 0.9em;
+      font-size: 1.1rem;
+      border-radius: 10px;
+    }
+  }
+}
