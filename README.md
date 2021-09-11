@@ -1,3 +1,7 @@
-# react-c2fpjz
+# About Project
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/react-c2fpjz)
+A Movie search react app
+
+# View Live
+
+[Click Here](https://github-g7k6eg.stackblitz.io)
