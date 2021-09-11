@@ -53,7 +53,7 @@ export default function App() {
         clearFiltersList={clearFiltersList}
       />
       <Container>
-        <div className="MovieList margin-top">
+        <div className="MovieList">
           {movieList.map((movie) => (
             <MovieInfo key={movie.id} movie={movie} />
           ))}

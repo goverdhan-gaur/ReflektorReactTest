@@ -19,7 +19,7 @@ const MovieInfo = (props) => {
 
   return (
     <div className="MovieInfo">
-      <img src={posterURL} />
+      <img src={posterURL} alt={title} />
       <div>
         <p className="MovieYear">{releaseYear}</p>
         <h1 className="MovieTitle">{title}</h1>
